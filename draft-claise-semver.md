@@ -162,18 +162,18 @@ to the evolution of the repository.
 
 # Example history
 
-The below sequence of commits and tags shows the progress of a specification
+The below sequence of commits and tags shows the progress of a structured specification
 through several stages of its life-cycle.  (Time flows up from the bottom, as
 is common in version control logs.)
 
-An initial version is proposed for a BoF and a WG is formed. The WG develops
+The example shows an initial version of the structured specification that is published during a  BoF process, and a WG is formed. The WG develops
 version 1.0.0 of the specification.  Along the way, they tag betas when they
 need an easy way to refer to a version, e.g., before WGLC.
 
 Once the WG has consensus, an Internet-Draft is created from the repository
 (draft-ietf-wg-proto-00) and submitted for the IETF consensus process,
 resulting in an RFC (RFC XXX1) that describes the first version of the
-protocol.
+protocol. In this example, there is never a need to publish an individual (author-named) internet-draft, because the WG worked directly on the structured specification and obtained consensus on it. 
 
 Comments from the IETF LC and the IESG are incorporated in the repository, and
 new versions of the Internet-Draft are generated for IESG review and submission
