@@ -165,7 +165,7 @@ evolution of the draft to easily be tied back to the evolution of the repository
 
 # Example history
 
-The below sequence of commits and tags shows the progress of a specification
+The below sequence of commits and tags shows the progress of a structured specification
 through several stages of its life-cycle.  (Time flows up from the bottom, as
 is common in version control logs.)
 
@@ -177,7 +177,7 @@ group last call (WGLC).
 Once the WG has reached consensus, an Internet-Draft is created from the repository
 (draft-ietf-wg-proto-00) and submitted for the IETF consensus process,
 resulting in an RFC (RFC XXX1) that describes the first version of the
-protocol.
+protocol. In this example, there is never a need to publish an individual (author-named) internet-draft, because the WG worked directly on the structured specification and obtained consensus on it. 
 
 Comments from the IETF last call (LC) and the IESG are incorporated in the repository, and
 new versions of the Internet-Draft are generated for IESG review and submission
