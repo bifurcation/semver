@@ -75,7 +75,7 @@ three-part convention, with an additional field for use in working group
 processes:
 
 ~~~~~
-  MAJOR.MINOR.PATCH-bBETA
+  MAJOR.MINOR.PATCH
 ~~~~~
 
 The fields in such a structured version have the following semantics (cf.
@@ -86,7 +86,6 @@ semver.org):
 * MINOR is incremented when new functionality is added in a manner that is
   backward-compatible with previous versions.
 * PATCH is incremented when bug fixes are made in a backward-compatible manner.
-* BETA is incremented when a new pre-release or testing version is made.
 
 
 In IETF terms, this versioning scheme provides functionality analogous to
@@ -94,8 +93,7 @@ several parts of the traditional IETF process.
 
 * MAJOR is analogous to an "obsoletes" relation between RFCs
 * MINOR is analogous to an "updates" relation between RFCs
-* PATCH is analogous to use of the IETF errata process
-* BETA is analogous to incrementing an Internet-draft version
+* PATCH is analogous to use of the RFC errata process
 
 
 The more major a change to the specification, the more consensus is required.
@@ -113,14 +111,33 @@ Internet-Draft format and submitted for IETF consensus.  Changes without such
 impacts MAY be approved by consensus of the working group. PATCH-level changes
 MAY be made by the editors, with the consent of the WG chairs.
 
-Typically, the working group will want to implement changes in the
-specification and discuss them before committing to a version.  While such
-changes can be implemented directly in the repository, it can be useful to mark
-certain versions as checkpoints, e.g., for reference at a hackathon.  These
-interim versions are marked with BETA numbers.  For example, a preliminary
-draft of a new feature that would become version 3.2.0 might be labeled
-"3.2.0-b2".  Versions submitted for working group or IETF last call must be
-tagged with a version of this form.
+When a working group starts up work on a new version of the specification,
+regardless of whether it's a minor update or a complete rewrite, they should
+create a dedicated branch of the repository for the new version, where changes
+related to the new version will be committed.  A semantic version is assigned
+when this branch is merged back to the main specification.
+
+
+## Versioning for Work in Progress
+
+It can be useful to mark certain versions of a work in progress as checkpoints,
+e.g., for reference at a hackathon.  These checkpoints should follow their own
+version sequence, much like Internet drafts:
+
+~~~~~
+  LABEL-VERSION
+~~~~~
+
+* LABEL is a string that identifies the feature branch
+* VERSION is incremented whenever a new revision is tagged
+
+These tags are analogous to Internet-Draft names. Much like an Internet-Draft
+name, the choice of LABEL values is up to the editors and WG chairs. In cases
+what they expect the completed work to result in a given version, then they
+might use that as a label value.  For example, if the WG has agreed to embark
+on a major revision to the protocol, then they might use the label
+"v2.0.0-beta", so that the working revisions would be "v2.0.0-beta-0",
+"v2.0.0-beta-1", etc.
 
 It's important to note that not every commit needs a version.  Much like
 working groups using Github to manage Internet-Drafts today only periodically
@@ -139,9 +156,9 @@ be merged, and the merge commit tagged with the new version number.
 
 # IETF Consensus for Structured Specifications
 
-While working groups may use any format for specifications under development, the
-Internet Standards process requires that a document proposed as an RFC must be
-submitted in the RFC format, i.e., as unstructured text.  Proposed RFCs are
+While working groups may use any format for specifications under development,
+the Internet Standards process requires that a document proposed as an RFC must
+be submitted in the RFC format, i.e., as unstructured text.  Proposed RFCs are
 also required to contain explanatory text not typically contained in structured
 specifications, most notably Security Considerations and IANA Considerations.
 Thus, a working group that is focused mainly on a structured specification will
@@ -158,30 +175,33 @@ RFC-formatted document as necessary.
 
 Whenever an Internet-Draft is generated from the repository, the corresponding
 commit in the repository should be tagged with the full name and version of the
-Internet-Draft.  Additionally, a reference to the repository (e.g., a URL) should
-exist in the text of the resulting Internet-Draft.  These steps enable the
-evolution of the draft to easily be tied back to the evolution of the repository.
+Internet-Draft.  Additionally, a reference to the repository (e.g., a URL)
+should exist in the text of the resulting Internet-Draft.  These steps enable
+the evolution of the draft to easily be tied back to the evolution of the
+repository.
 
 
 # Example history
 
-The below sequence of commits and tags shows the progress of a structured specification
-through several stages of its life-cycle.  (Time flows up from the bottom, as
-is common in version control logs.)
+The below sequence of commits and tags shows the progress of a structured
+specification through several stages of its life-cycle.  (Time flows up from
+the bottom, as is common in version control logs.)
 
 An initial version of a protocol is proposed for a Birds of a Feather (BoF) and
-a WG is formed. The WG develops version 1.0.0 of the specification.  Along the way,
-they tag betas when they need an easy way to refer to a version, e.g., before working
-group last call (WGLC).
+a WG is formed. The WG develops version 1.0.0 of the specification.  Along the
+way, they tag betas when they need an easy way to refer to a version, e.g.,
+before working group last call (WGLC).
 
-Once the WG has reached consensus, an Internet-Draft is created from the repository
-(draft-ietf-wg-proto-00) and submitted for the IETF consensus process,
-resulting in an RFC (RFC XXX1) that describes the first version of the
-protocol. In this example, there is never a need to publish an individual (author-named) internet-draft, because the WG worked directly on the structured specification and obtained consensus on it. 
+Once the WG has reached consensus, an Internet-Draft is created from the
+repository (draft-ietf-wg-proto-00) and submitted for the IETF consensus
+process, resulting in an RFC (RFC XXX1) that describes the first version of the
+protocol. In this example, there is never a need to publish an individual
+(author-named) internet-draft, because the WG worked directly on the structured
+specification and obtained consensus on it. 
 
-Comments from the IETF last call (LC) and the IESG are incorporated in the repository, and
-new versions of the Internet-Draft are generated for IESG review and submission
-to the RFC editor.
+Comments from the IETF last call (LC) and the IESG are incorporated in the
+repository, and new versions of the Internet-Draft are generated for IESG
+review and submission to the RFC editor.
 
 ~~~~~
 ...
@@ -191,14 +211,14 @@ to the RFC editor.
 |
 * 7494725 (tag:draft-ietf-wg-proto-01) Responses to IETF LC comments
 |
-* 8e2be54 (tag:v1.0.0-b2, tag:draft-ietf-wg-proto-00)
+* 8e2be54 (tag:proto-2, tag:draft-ietf-wg-proto-00)
 |         Responses to WGLC comments
 |
-* 9703a60 (tag:v1.0.0-b1) Responses to comments at IETF meeting
+* 9703a60 (tag:proto-1) Responses to comments at IETF meeting
 |
 * 2b83977 Responses to J. Smith comments
 |
-* 8b75e1e (tag:v1.0.0-b0) Responses to BoF comments
+* 8b75e1e (tag:proto-0) Responses to BoF comments
 |
 * 1991498 Initial submission
 ~~~~~
@@ -216,23 +236,25 @@ feature is minor enough that it can be approved by WG consensus.
 |\     
 | * 8fb9cb6 Responses to WGLC comments on feature Y
 | |
-| * 39322e9 (tag:v1.2.0-b0) Add feature Y
+| * 39322e9 (tag:featureY-1) Responses to WG comments; ready for WGLC
+| |
+| * 39322e9 Add feature Y
 |/     
 *   d1d201d (tag:v1.1.1) Fix validation errors
 |
-*   6571483 (tag:v1.1.0, tag:draft-ietf-wg-proto-feature-03,
+*   6571483 (tag:v1.1.0, tag:draft-ietf-wg-proto-feature-04,
 |           tag:RFCXXX2) Merge branch 'v1.1'
 |\
-| * XXXXXXX (tag:draft-ietf-wg-proto-feature-03) Resolution of DISCUSSes
+| * abc3f5e (tag:draft-ietf-wg-proto-feature-03) Resolution of DISCUSSes
 | |         from Security AD
 | |
-| * XXXXXXX (tag:draft-ietf-wg-proto-feature-02) Resolution of DISCUSSes
+| * 3ab54f3 (tag:draft-ietf-wg-proto-feature-02) Resolution of DISCUSSes
 | |         from Internet and Transport ADs
 | |
 | * cabb1f6 (tag:draft-ietf-wg-proto-feature-01) Responses to WGLC
 | |         and IETF LC comments on feature X
 | |
-| * fbfaa6b (tag:v1.1.0-b0, tag:draft-ietf-wg-proto-feature-00)
+| * fbfaa6b (tag:featureX-0, tag:draft-ietf-wg-proto-feature-00)
 | |         Responses to comments on feature X
 | |
 | * 0630638 Add feature X
@@ -256,9 +278,9 @@ process, resulting in RFC XXX3.
 | * df5d437 (tag:draft-ietf-wg-protobis-00) Responses to
 | |         WGLC and IETF LC comments
 | |
-| * 986ebb6 (tag:v2.0.0-b1) Checkpoint for hackathon
+| * 986ebb6 (tag:v2.0.0-beta-1) Checkpoint for hackathon
 | |
-| * d86986e (tag:v2.0.0-b0) Some more v2 features
+| * d86986e (tag:v2.0.0-beta-0) Some more v2 features
 | |
 | * ca02154 Restructure for v2
 |/
