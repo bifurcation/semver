@@ -67,8 +67,10 @@ best with IETF processes.
 
 We start from the premise that a working group controls a version-controlled
 repository (e.g., Git, SVN, etc.) for a structured specification (not formatted
-as an Internet-Draft), and can "tag" commits in the repository as having certain
-version numbers.
+as an Internet-Draft), and can "tag" commits in the repository as having
+certain version numbers.  We assume that there is one repository per
+specification, so that version tags don't need to specify which specification
+they refer to.
 
 The recommended structure for semantic versions follows the widely-used
 three-part convention, with an additional field for use in working group
@@ -197,7 +199,7 @@ repository (draft-ietf-wg-proto-00) and submitted for the IETF consensus
 process, resulting in an RFC (RFC XXX1) that describes the first version of the
 protocol. In this example, there is never a need to publish an individual
 (author-named) internet-draft, because the WG worked directly on the structured
-specification and obtained consensus on it. 
+specification and obtained consensus on it.
 
 Comments from the IETF last call (LC) and the IESG are incorporated in the
 repository, and new versions of the Internet-Draft are generated for IESG
@@ -293,3 +295,26 @@ This example history is greatly simplified.  In a real WG, there will be far
 more commits without versions, as the WG incorporates proposals, edits
 explanatory text, etc.  But this example highlights the key moments in the
 life-cycle of a specification.
+
+
+# Creating Internet-Drafts from a Repository
+
+As noted above, WGs should have one repository per specification.  Over the
+lifetime of the specification, it will be necessary for automated tools to
+build Internet-Drafts from this repository.  A standardized repository layout
+can help automate this process.
+
+The root level of the repository should have a file named `index.xml` or
+`index.md`, depending on whether [XML](https://tools.ietf.org/html/rfc7991) or
+[Markdown](https://github.com/miekg/mmark/wiki/Syntax) is being used.  This
+file should itself be a valid source for an Internet-Draft, including
+information about the title to be used, authors' / editors' names, security
+considerations, etc.  It will act as a template into which the structured
+specification will be included when an Internet-Draft is created.
+
+The template file should include files that comprise the structured
+specification as figures at appropriate points in the draft.  The Markdown
+syntax provided by `mmark` provides a syntax for including [code
+fragments](https://github.com/miekg/mmark/wiki/Syntax#including-code-fragments)
+from external files, including the ability to selectively include parts of a
+file.
