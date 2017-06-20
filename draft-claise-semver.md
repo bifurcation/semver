@@ -19,6 +19,11 @@ author:
     name: Richard Barnes
     org: Cisco
     email: rlb@ipv.sx
+ -
+    ins: J. Clarke
+    name: Joe Clarke
+    org: Cisco
+    email: jclarke@cisco.com
 
 
 --- abstract
@@ -65,9 +70,14 @@ best with IETF processes.
 
 # Managing Semantic Versions
 
+While some of this process might apply to completely new work (such as a YANG 
+module), the process in this document applies to WG adopted work items or to
+modification of an existing IETF-approved work item (typically a bis document
+).
+
 We start from the premise that a working group controls a version-controlled
 repository (e.g., Git, SVN, etc.) for a structured specification (not formatted
-as an Internet-Draft), and can "tag" commits in the repository as having
+as an Working Group Internet-Draft), and can "tag" commits in the repository as having
 certain version numbers.  We assume that there is one repository per
 specification, so that version tags don't need to specify which specification
 they refer to.
@@ -114,11 +124,16 @@ impacts MAY be approved by consensus of the working group. PATCH-level changes
 MAY be made by the editors, with the consent of the WG chairs.
 
 When a working group starts up work on a new version of the specification,
-regardless of whether it's a minor update or a complete rewrite, they should
+regardless of whether it's a minor update or a complete rewrite, they SHOULD
 create a dedicated branch of the repository for the new version, where changes
-related to the new version will be committed.  A semantic version is assigned
-when this branch is merged back to the main specification.
+related to the new version will be committed.  The semantic version, i.e. MAJOR 
+and MINOR is assigned when this branch is merged back to the main specification.
+Once there is consensus to update the main specification to that version, the 
+branch should be merged, and the merge commit tagged with the new version number.
 
+When working on modification to an existing work item (typically a bis document), 
+the process is to fork a git repo, branch, make a proposal, then push the branch
+back over to the Working Group when/if the Working Group adopts it.
 
 ## Versioning for Work in Progress
 
