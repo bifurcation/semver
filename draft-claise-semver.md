@@ -1,7 +1,7 @@
 ---
 title: "Semantic Versioning and Structure for IETF Specifications"
 abbrev: SemVer
-docname: draft-claise-semver
+docname: draft-claise-semver-latest
 category: std
 ipr: trust200902
 
