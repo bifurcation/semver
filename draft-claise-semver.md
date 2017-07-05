@@ -115,13 +115,16 @@ typical IETF consensus process. Every commit that is tagged with a MAJOR
 version change MUST also have a tag indicating the number of the RFC describing
 the change.
 
-For MINOR changes, WG consensus is required. The WG chairs can additionally
-decide whether IETF consensus is required. Any change to the structured
-specification that significantly changes the security considerations for the
-protocol or requires additional IANA actions MUST be converted into
-Internet-Draft format and submitted for IETF consensus.  Changes without such
-impacts MAY be approved by consensus of the working group. PATCH-level changes
-MAY be made by the editors, with the consent of the WG chairs.
+MINOR changes follow the same rules, except that the Area Director for the WG
+MAY approve the issuance of a minor version with only WG consensus, not full
+IETF consensus.  Any change to the structured specification that significantly
+changes the security considerations for the protocol or requires additional
+IANA actions MUST be converted into Internet-Draft format and submitted for
+IETF consensus.  With the approval of the AD for the WG, changes without such
+impacts MAY be approved by consensus of the working group.
+
+PATCH-level changes MAY be made by the editors, with the consent of the WG
+chairs.
 
 When a working group starts up work on a new version of the specification,
 regardless of whether it's a minor update or a complete rewrite, they SHOULD
