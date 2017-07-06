@@ -29,13 +29,14 @@ author:
 --- abstract
 
 In the Internet engineering ecosystem, there is increasingly a need for
-specifications that evolve over time, and are encoded directly in structured
-formats (e.g., YANG models).  Internet-Drafts are a poor fit for working groups
-that want to produce structured specifications, and publishing versions of an
-evolving specification as RFC makes it difficult to track the specification
-over time.  This document outlines recommendations for how working groups can
-provide semantic versioning for, and work directly on, structured documents while
-still fitting within established IETF processes.
+specifications that evolve over time, and which are encoded directly in
+structured formats (e.g., YANG models).  Internet-Drafts are a poor fit for
+working groups that want to produce structured specifications, and publishing
+versions of an evolving specification as RFC makes it difficult to track the
+specification over time.  This document outlines recommendations for how
+working groups can provide consistent, meaningful versions for specifications
+over time and work directly on structured documents while still fitting within
+established IETF processes.
 
 
 --- middle
@@ -47,13 +48,13 @@ deployed today is much faster than it was early in the Internet's history.  In
 this environment, maintaining interoperability can be more challenging.
 
 Two of the major mechanisms that have been developed for driving
-interoperability in a more dynamic ecosystem are semantic versioning and
-structured specifications.  Structured specifications allow much of the work of
+interoperability in a more dynamic ecosystem are structured specifications and
+semantic versioning.  Structured specifications allow much of the work of
 implementing a specification to be automated, so that developers can focus on
 the parts of a specification that really need human involvement.  Semantic
 versioning helps operators know what versions can be deployed without breaking
-running systems, so that they can safely deploy updated versions of a specification
-more quickly.
+running systems, so that they can safely deploy updated versions of a
+specification more quickly.
 
 The traditional practices of the IETF interact poorly with these mechanisms.
 Each document presented to the IETF for last call and IESG approval must be
@@ -70,17 +71,16 @@ best with IETF processes.
 
 # Managing Semantic Versions
 
-While some of this process might apply to completely new work (such as a YANG 
+While some of this process might apply to completely new work (such as a YANG
 module), the process in this document applies to WG adopted work items or to
-modification of an existing IETF-approved work item (typically a bis document
-).
+modification of an existing IETF-approved work item (typically a bis document).
 
 We start from the premise that a working group controls a version-controlled
 repository (e.g., Git, SVN, etc.) for a structured specification (not formatted
-as an Working Group Internet-Draft), and can "tag" commits in the repository as having
-certain version numbers.  We assume that there is one repository per
-specification, so that version tags don't need to specify which specification
-they refer to.
+as an Working Group Internet-Draft), and can "tag" commits in the repository as
+having certain version numbers.  We assume that there is one repository per
+specification, so that version tags don't need to state the specification to
+which they refer.
 
 The recommended structure for semantic versions follows the widely-used
 three-part convention, with an additional field for use in working group
@@ -112,16 +112,19 @@ The more major a change to the specification, the more consensus is required.
 When the WG wants to make a MAJOR change to a structured specification, the
 specification MUST be converted into Internet-Draft format and run through the
 typical IETF consensus process. Every commit that is tagged with a MAJOR
-version change MUST also have a tag indicating the number of the RFC describing
-the change.
+version change MUST also have a tag of the form "RFC-XXXX" indicating the
+number of the RFC describing the change.
 
-For MINOR changes, WG consensus is required. The WG chairs can additionally
-decide whether IETF consensus is required. Any change to the structured
-specification that significantly changes the security considerations for the
-protocol or requires additional IANA actions MUST be converted into
-Internet-Draft format and submitted for IETF consensus.  Changes without such
-impacts MAY be approved by consensus of the working group. PATCH-level changes
-MAY be made by the editors, with the consent of the WG chairs.
+MINOR changes follow the same rules, except that the Area Director for the WG
+MAY approve the issuance of a minor version with only WG consensus, not full
+IETF consensus.  Any change to the structured specification that significantly
+changes the security considerations for the protocol or requires additional
+IANA actions MUST be converted into Internet-Draft format and submitted for
+IETF consensus.  With the approval of the AD for the WG, changes without such
+impacts MAY be approved by consensus of the working group.
+
+PATCH-level changes MAY be made by the editors, with the consent of the WG
+chairs.
 
 When a working group starts up work on a new version of the specification,
 regardless of whether it's a minor update or a complete rewrite, they SHOULD
@@ -149,12 +152,11 @@ version sequence, much like Internet drafts:
 * VERSION is incremented whenever a new revision is tagged
 
 These tags are analogous to Internet-Draft names. Much like an Internet-Draft
-name, the choice of LABEL values is up to the editors and WG chairs. In cases
-what they expect the completed work to result in a given version, then they
-might use that as a label value.  For example, if the WG has agreed to embark
-on a major revision to the protocol, then they might use the label
-"v2.0.0-beta", so that the working revisions would be "v2.0.0-beta-0",
-"v2.0.0-beta-1", etc.
+name, the choice of LABEL values is up to the editors and WG chairs. For cases
+expected to result in a given version, they may choose to use that as a label
+value.  For example, if the WG has agreed to embark on a major revision to the
+protocol, then they might use the label "v2.0.0-beta", so that the working
+revisions would be "v2.0.0-beta-0", "v2.0.0-beta-1", etc.
 
 It's important to note that not every commit needs a version.  Much like
 working groups using Github to manage Internet-Drafts today only periodically
@@ -202,7 +204,7 @@ repository.
 
 The below sequence of commits and tags shows the progress of a structured
 specification through several stages of its life-cycle.  (Time flows up from
-the bottom, as is common in version control logs.)
+the bottom, as is common in version control logs; most recent is on top.)
 
 An initial version of a protocol is proposed for a Birds of a Feather (BoF) and
 a WG is formed. The WG develops version 1.0.0 of the specification.  Along the
@@ -307,7 +309,7 @@ process, resulting in RFC XXX3.
 ~~~~~
 
 This example history is greatly simplified.  In a real WG, there will be far
-more commits without versions, as the WG incorporates proposals, edits
+more commits without versions, as the WG incorporates proposals, edits,
 explanatory text, etc.  But this example highlights the key moments in the
 life-cycle of a specification.
 
